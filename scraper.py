@@ -53,6 +53,7 @@ class Scraper(object):
 
 			row = [date, title, name, products, cves, amount, vulns, link]
 			row = self.extra(row)
+
 			row = [''.join(self.filterUni.split(field)).encode('utf8') for field in row]
 
 			print row[1]
@@ -113,7 +114,7 @@ class IBMScraper(Scraper):
 		return content.xpath('h4/text()')[0].strip()
 
 	def getName(self, content):
-		content.xpath('div[@class="entryContentContainer"]/p/text()')[0].strip()
+		return content.xpath('div[@class="entryContentContainer"]/p/text()')[0].strip()
 
 	def getProducts(self, content):
 		products = content.xpath('div[@class="entryContentContainer"]/div/p/text()')
